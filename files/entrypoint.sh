@@ -22,7 +22,6 @@ STORAGE_FOLDER=${STORAGE_FOLDER:-"/data"}
 exec radicale \
     --host 0.0.0.0:5232 \
     --debug \
-    --no-server-daemon \
     --server-max-connections=${MAX_CONNECTIONS} \
     --server-max-content-length=${MAX_CONTENT_LENGTH} \
     --server-timeout=${TIMEOUT} \
@@ -30,8 +29,6 @@ exec radicale \
         ${SSL:+"--server-certificate=${SSL_CERTIFICATE}"} \
         ${SSL:+"--server-key=${SSL_KEY}"} \
         ${SSL:+"--certificate-authority=${SSL_CA}"} \
-    `if [ "x${DNS_LOOKUP}" = "xTrue" ]; then echo "--server-dns-lookup"; else echo "--no-server-dns-lookup"; fi` \
-    --server-realm="${REALM}" \
     --encoding-request=${ENCODING} \
     --encoding-stock=${ENCODING} \
     --auth-type=${AUTH_TYPE} \
